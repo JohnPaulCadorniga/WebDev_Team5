@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>School Classroom Feedback Survey</title>
+
+  <style>
+  body {
+  font-family: 'Lucida Sans Unicode', sans-serif;
+  background-image: url("school-bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px;
+}
+.container {
+  background-image: url('nb background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+   h1, h2 {
+  text-align: center;
+  padding: 20px;
+  color: rgb(0, 0, 0);
+}
+    .filter_label{
+     color: black;
+     display: inline-block;
+     
+}
+    .filter_block{
+    justify-content: center;
+    text-align: center;
+}
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+}
+    .subj{
+      width: 150px;
+      margin-bottom: 20px;
+}
+    input[type="text"],
+    select,
+    textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+    
+    input[type="checkbox"] {
+     width: auto;
+     margin-top: 15px;
+}
+    .stars {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+}
+    .star {
+      font-size: 24px;
+      cursor: pointer;
+      color: gray;
+}
+    .star.checked {
+      color: gold;
+}
+    button {
+      background: #800080;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+}
+    button:hover {
+      background: #45a049;
+}
+    table {
+      border-collapse: collapse;
+      margin-left: auto;
+      margin-right: auto;
+}
+    th {
+      border: 3px purple solid;
+      padding: 10px;
+      background-color: rgb(157, 50, 157);
+      color: white;
+}
+    td {
+      text-align: center;
+      border: 3px purple solid;
+      background-color: white;
+}
+    a{
+      text-decoration: none;
+}
+    #navigate{
+      font-family: 'Lucida Sans';
+      display: block;
+      width: 350px;
+      margin-left: auto;
+      margin-right: auto;
+}
+    
+  
+
+  </style>
+  </head>
+  <body>
+
+ <div class="container">
+  <h1>School Classroom Feedback Survey</h1>
+
+<form id = "form">
+  
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name">
+  
+    <label for="grd_sec">Grade & Section:</label>
+    <select id="grd_sec" name="grd_sec">
+      <option value="">-- Select Grade --</option>
+      <option value="7A">Grade 7-A</option>
+      <option value="7B">Grade 7-B</option>
+      <option value="8A">Grade 8-A</option>
+      <option value="8B">Grade 8-B</option>
+      <option value="9A">Grade 9-A</option>
+      <option value="9B">Grade 9-B</option>
+    </select>
+
+  <label for ="subject">Subject:</label>
+  <select id ="subject" name="subject">
+    <option value ="">-- Select Subject --</option>
+    <option value ="Filipino">Filipino</option>
+    <option value ="Math">Math</option>
+    <option value = "Science">Science</option>
+    <option value = "Physical Education">Physical Education</option>
+  </select>
+
+  <label>Teacher Rating:</label>
+  <div class="stars" id="ratings">
+    <span class="star" data-value="1 ⭐">&#9733;</span>
+    <span class="star" data-value="2 ⭐⭐">&#9733;</span>
+    <span class="star" data-value="3 ⭐⭐⭐">&#9733;</span>
+    <span class="star" data-value="4 ⭐⭐⭐⭐">&#9733;</span>
+    <span class="star" data-value="5 ⭐⭐⭐⭐⭐">&#9733;</span>
+  </div>
+
+    <label for = "favoriteLesson">Favorite Lesson:</label>
+    <input type="text" id="favorite-lesson" name="favorite-lesson" placeholder="Type your favorite lesson...">
+
+    <label for="suggestions">Suggestions for Improvement:</label>
+    <textarea id="suggestions" name="suggestions" rows="4" style="resize: none;"></textarea>
+    
+    <label style="display: block; align-items: center; gap: 8px;">
+        <input type="checkbox" id="anonymous" name="anonymous">
+        Submit Anonymously
+      </label>
+  
+      <button id="submitBtn">Submit</button>
+    
+    </form>
+  </div> <br>
+
+<div class = "filter_block">
+  <label for = "filter_subj" class = "filter_label">Filter By Subject:</label>
+  <select id = "filter_subj" onchange = "filter()" class="subj">
+    <option value ="">-- Select Subject --</option>
+    <option value ="Filipino">Filipino</option>
+    <option value ="Math">Math</option>
+    <option value = "Science">Science</option>
+    <option value = "Physical Education">Physical Education</option>       
+  </select> 
+</div>
+
+<div>
+      <table id = "Table">
+        <tr>
+        <th>FULL NAME</th>
+        <th>GRADE & SECTION</th>
+        <th>SUBJECT</th>
+        <th>TEACHERS RATING</th>
+        <th>FAVORITE LESSON</th>
+        <th>SUGGESTIONS FOR IMPROVEMENT</th>
+        </tr>
+
+        <tbody id = "Table_Body">
+        </tbody>
+      </table>
+</div> <br>
+
+  <a href = "./BarangayHealthMonitoringSystem">
+  <button id = "navigate">Go To Barangay Monitorning Health Survey</button>
+  </a>
+
+  <script>
+
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        stars.forEach(s => s.classList.remove('checked'));
+        star.classList.add('checked');
+        let prev = star.previousElementSibling;
+        while (prev) {
+          prev.classList.add('checked');
+          prev = prev.previousElementSibling;
+        }
+      });
+    });
+  </script>
+
+  <script>
+    document.getElementById('submitBtn').addEventListener('click', function() {
+      event.preventDefault();
+        if (confirm('Do you want to submit the form?')){
+          clicked();
+    }});
+
+    function clicked(){
+      var hide_name = document.getElementById('anonymous');
+      var star = document.querySelectorAll('.star.checked'); 
+      var num_stars = star.length > 0 ? star[star.length - 1] : null;
+      var fullname = [];
+      var grd_sec = [];
+      var subject = [];
+      var ratings = [];
+      var fav_lesson = [];
+      var suggest = []
+
+      var x = 1;
+      var n = -1;
+
+      var AddRown = document.getElementById('Table_Body');
+      var NewRow = AddRown.insertRow(n);
+      
+      if (hide_name.checked){
+        fullname[x] = "Anonymous"; 
+      } else{
+        fullname[x] = document.getElementById('name').value;
+      }
+      grd_sec[x] = document.getElementById('grd_sec').value;
+      subject[x] = document.getElementById('subject').value;
+      ratings[x] = num_stars ? num_stars.getAttribute('data-value') : 'No Rating';
+      fav_lesson[x] = document.getElementById('favorite-lesson').value;
+      suggest[x] = document.getElementById('suggestions').value;
+
+      var cell1 = NewRow.insertCell(0);
+      var cell2 = NewRow.insertCell(1);
+      var cell3 = NewRow.insertCell(2);
+      var cell4 = NewRow.insertCell(3);
+      var cell5 = NewRow.insertCell(4);
+      var cell6 = NewRow.insertCell(5);
+
+      cell1.innerHTML = fullname[x];
+      cell2.innerHTML = grd_sec[x];
+      cell3.innerHTML = subject[x];
+      cell4.innerHTML = ratings[x];
+      cell5.innerHTML = fav_lesson[x];
+      cell6.innerHTML = suggest[x];
+
+      n++;
+      x++;
+
+      document.getElementById('form').reset();
+      stars.forEach(s => s.classList.remove('checked'));
+    }
+  </script>
+
+<script>
+  function filter() {
+    const subjfilter = document.getElementById("filter_subj").value.toLowerCase().trim();
+    const rows = document.getElementById("Table_Body").getElementsByTagName("tr");
+
+    for (let i = 0; i < rows.length; i++) {
+    const subj_col = rows[i].getElementsByTagName("td")[2].textContent.toLowerCase().trim();
+
+    if (!subjfilter || subj_col === subjfilter) {
+      rows[i].style.display = "";
+    } else {
+      rows[i].style.display = "none";
+    }
+  }
+  }
+</script>
+  
+  </body>
+  </html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BARANGAY HEALTH MONITORING SYSTEM</title>
+    <style type="text/css">
+        body{
+            font-family: 'Lucida Sans Unicode', sans-serif;
+            background-image: url("city-bg.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+        .form-control{
+            text-align: left;
+            margin-bottom: 25px;
+        }
+        form{
+            margin: 20px auto;
+            padding: 30px;
+            max-width: 600px;
+            background-color: lightgreen;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-control input,
+        .form-control select,
+        .form-control textarea{
+            display: block;
+            padding: 8px;
+            width: 95%;
+        }
+
+        .form-control input[type="radio"],
+        .form-control input[type="checkbox"]{
+            display: inline-block;
+            width: auto;
+        }
+
+        button{
+            display: block;
+            width: 100%;
+            padding: 5px;
+            color: black;
+            background-color: whitesmoke;
+            border-radius: 5px;
+            font-family:'Lucida Sans Unicode';
+            font-size: 15px;
+            width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: lightblue;
+            cursor: pointer;
+        }
+        #print {
+            display: block;
+            width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10px;
+        }
+
+        #printable {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+            
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            background-color: lightgreen; 
+        }
+        h1 {
+            text-align: center;
+            line-height: 1px;
+        }
+        th {
+            text-align: center;
+            font-family: 'Lucida Sans Unicode', sans-serif;
+            border: 5px black solid;
+            padding: 5px;
+            font-size: 16px;
+            color: black;
+        }
+
+        #Table_Body tr:hover td{
+            background-color: lightyellow;
+            color: lightcoral;
+            font-size: 15px;
+        }
+        td {
+            text-align: center;
+            color: black;
+            border: 5px black solid;
+            font-family: Tahoma;
+            font-size: 14px;
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+        #hnotes{
+            width: 28%;
+            text-align: center;
+        }
+
+        a{
+            text-decoration: none;
+        }
+        #navigate{
+            font-family: 'Lucida Sans';
+            display: block;
+            width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 style = "color: black; font-size: 200%; text-align: center; font-family: 'Lucida Sans Unicode';">BARANGAY HEALTH MONITORING FORM</h1>
+<form style = "color: black; text-align: center; font-family:'Lucida Sans Unicode';" id = "form"> 
+    <fieldset>
+    <div class="form-control">
+    <label  style="display: block; margin-bottom: 5px;">Full Name:</label>
+    <input type="text" name = "full name" id="full name" placeholder="Enter your name">
+    </div>
+    
+    <div class="form-control">
+        <label  style="display: block; margin-bottom: 5px;">Age:</label>
+        <input type="number" id="age" min="1" max="120" placeholder="Enter your age">
+        </div>
+    
+    <div class="form-control" id="gender">
+        <label  style="display: block; margin-bottom: 5px;">Gender:</label>
+        <label><input type="radio" name="gender" value="Male" onclick="toggleOtherGender(false)"> Male</label>
+        <label><input type="radio" name="gender" value="Female" onclick="toggleOtherGender(false)"> Female</label>
+        <label><input type="radio" name="gender" value="Other" onclick="toggleOtherGender(true)"> Other</label>
+        </div>
+
+        <div id="other-gender-div" class="hidden">
+            <label for="other-gender-input">Please specify:</label>
+            <input type="text" id="other-gender-input" placeholder="Enter your gender">
+          </div>
+    
+    <div class="form-control">
+        <label  style="display: block; margin-bottom: 5px;">Address:</label>
+        <select id="address">
+            <option value = " ">-- Select --</option>
+            <option>Purok 1</option>
+            <option>Purok 2</option>
+            <option>Purok 3</option>
+          </select>
+        </div>
+    
+    <div class="form-control">
+        <label  style="display: block; margin-bottom: 5px;">Vaccination Status:</label>
+        <select id="vac stat">
+        <option value = " ">-- Select --</option>
+        <option>✔️ Vaccinated</option>
+        <option>❌ Unvaccinated</option>
+        </select>
+        </div>
+
+    <div class="form-control">
+        <label  style="display: block; margin-bottom: 5px;">Recent Symptoms:</label>
+        <input name = "symptoms" type="checkbox" value = "Fever">Fever</label>
+        <input name = "symptoms" type="checkbox" value = "Cough">Cough</label>
+        <input name = "symptoms" type="checkbox" value = "Fatigue">Fatigue</label>
+        </select>
+        </div>
+
+    <div class="form-control">
+        <label  style="display: block; margin-bottom: 5px;">Last Medical Checkup:</label>
+        <input type="date" id="last med chkup">
+        </div>
+    
+    <div class="form-control">
+        <label  style="display: block; margin-bottom: 5px;">Additional Health Notes:</label>
+        <textarea id="health notes" placeholder="Enter your additional health notes here"></textarea>
+        </div> 
+
+        <button type = "submit" id = "submitBtn">Submit</button>
+    </fieldset>
+</form> <br>
+
+    <h1 style = "color: black; font-size: 200%; text-align: center; font-family: 'Lucida Sans Unicode';">COMPILATION OF HEALTH INFO IN THE BARANGAY</h1>
+
+    <button id = "print" onclick = "print_view()"> Click Here To Print The Table </button>
+
+<div id = "printable">
+    <table id = "Table">
+        <tr>
+        <th>FULL NAME</th>
+        <th>AGE</th>
+        <th>GENDER</th>
+        <th>ADDRESS</th>
+        <th>VACCINATION STATUS</th>
+        <th>RECENT SYMPTOMS</th>
+        <th>LAST MEDICAL CHECKUP</th>
+        <th id = "hnotes">ADDITIONAL HEALTH NOTES</th>
+        </tr>
+
+        <tbody id = "Table_Body">
+            
+        </tbody>
+    </table>
+</div> <br>
+
+    <a href = "./">
+    <button id = "navigate">Go To School Classroom Feedback Survey</button>
+    </a>
+
+    <script>
+        function print_view(){
+            var printcontents = document.getElementById('printable').innerHTML;
+            var originalcontents = document.body.innerHTML;
+
+            var style = `
+            <style>
+                table {border-collapse: collapse; width: 100%;}
+                th, td {border: 2px solid black; padding: 8px;}
+                td {font-size: 15px;}
+                body {font-family: Arial; text-align: center;}
+                }
+            </style>`;
+            var header = `<h2>COMPILATION OF HEALTH INFO IN THE BARANGAY</h2>`;
+
+            document.body.innerHTML = style + header + printcontents;
+            window.print();
+            document.body.innerHTML = originalcontents;
+    } 
+    </script>
+    
+    <script>    
+        function toggleOtherGender(show) {
+          const div = document.getElementById("other-gender-div");
+          div.classList.toggle("hidden", !show);
+        }
+      </script>
+
+    <script>
+    document.getElementById('submitBtn').addEventListener('click', function(event) {
+        event.preventDefault();
+        if (confirm('Do you want to submit the form?')){
+        clicked();
+        }
+    });
+
+    function clicked(){
+        var age_val = Number(document.getElementById('age').value);
+
+        if (age_val >= 1 && age_val <= 120){
+        var fullname = [];
+        var age = [];
+        var gender = [];
+        var address = [];
+        var vacinnation_stats = [];
+        var recent_syptoms = [];
+        var last_med_checkup = [];
+        var add_health_notes = []
+
+        var n = -1;
+        var x = 0;
+
+        var AddRown = document.getElementById('Table_Body');
+        var NewRow = AddRown.insertRow(n);
+
+        fullname[x] = document.getElementById('full name').value;
+        age[x] = document.getElementById('age').value;
+        var radio = document.getElementsByName('gender');
+            for (i = 0; i < radio.length; i++){
+            if (radio[i].checked){
+                if (radio[i].value === 'Other'){
+                    gender[x] = document.getElementById('other-gender-input').value;}
+                else{
+                    gender[x] = radio[i].value;}
+                break;
+            }}
+        address[x] = document.getElementById('address').value;
+        vacinnation_stats[x] = document.getElementById('vac stat').value;
+        var chkbox = document.querySelectorAll('input[name = "symptoms"]:checked');
+        var temp = []
+            for (i = 0; i < chkbox.length; i++){
+                temp.push(chkbox[i].value)
+            }
+            recent_syptoms[x] = temp.join(", ");
+        last_med_checkup[x] = document.getElementById('last med chkup').value;
+        add_health_notes[x] = document.getElementById('health notes').value;
+
+        var cell1 = NewRow.insertCell(0);
+        var cell2 = NewRow.insertCell(1);
+        var cell3 = NewRow.insertCell(2);
+        var cell4 = NewRow.insertCell(3);
+        var cell5 = NewRow.insertCell(4);
+        var cell6 = NewRow.insertCell(5);
+        var cell7 = NewRow.insertCell(6);
+        var cell8 = NewRow.insertCell(7);
+
+        cell1.innerHTML = fullname[x];
+        cell2.innerHTML = age[x];
+        cell3.innerHTML = gender[x];
+        cell4.innerHTML = address[x];
+        cell5.innerHTML = vacinnation_stats[x];
+        cell6.innerHTML = recent_syptoms[x];
+        cell7.innerHTML = last_med_checkup[x];
+        cell8.innerHTML = add_health_notes[x]
+            
+        n++;
+        x++;
+        } else{
+            alert ('Age must be higher than 1 or lower than 120')
+        }
+        document.getElementById('form').reset();
+    }
+    </script>
+  
+</body>
+</html>
